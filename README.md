@@ -7,3 +7,10 @@
 所以就直接是参数的形式出现在了目录名上, 我估计的是当我配置该参数值为target/后应该没问题了, 但是很奇怪网上并没有讲解该参数如何配置的,
 我尝试过`<properties><project><build><directory>target/</></></>`不行, `<properties><project-build-directory>target<properties/>`,
 也不行, 后只能将项目删了重新new project, 逐解决. (加上写该文件耗时40分钟, 艹)
+
+记录一个小问题  
+调用Arrays.asList()生产的List的add、remove方法时报异常 java.lang.UnsupportedOperationException  
+原因:  
+Arrays.asList() 返回的是Arrays的内部类ArrayList, 而不是java.util.ArrayList.  
+Arrays的内部类ArrayList和java.util.ArrayList都是继承AbstractList, remove、add等方法AbstractList中是默认就是 throw UnsupportedOperationException  
+java.util.ArrayList重新了这些方法而Arrays的内部类ArrayList没有重新，所以会抛出异常。  
